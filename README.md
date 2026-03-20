@@ -1,36 +1,243 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧭 DevMap — Tu Waze de Código
 
-## Getting Started
+## 🚀 Descripción
 
-First, run the development server:
+DevMap es una herramienta impulsada por IA que transforma una idea de software en un **mapa visual interactivo de desarrollo**, mostrando qué construir, en qué orden y por qué.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+En lugar de listas aburridas, DevMap genera un **grafo de dependencias**, ayudando a desarrolladores (especialmente juniors) a entender exactamente por dónde empezar.
+
+---
+
+## 🎯 Problema
+
+Los desarrolladores junior:
+
+* No saben por dónde empezar un proyecto
+* Se sienten abrumados por la complejidad
+* No entienden dependencias reales entre partes del sistema
+
+---
+
+## 💡 Solución
+
+DevMap convierte una idea como:
+
+> “Sistema de notas con React y Supabase”
+
+En:
+
+* Un **mapa visual (grafo)**
+* Con nodos (features)
+* Y conexiones (dependencias)
+
+Ejemplo:
+
+```
+DB → Auth → Roles → Dashboard
+        ↓
+     Notas CRUD
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧠 Propuesta de Valor
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Elimina la parálisis al iniciar proyectos
+* Explica dependencias reales
+* Guía paso a paso al usuario
+* Visual e intuitivo (tipo Google Maps del desarrollo)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🖥️ MVP (Minimum Viable Product)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Input (Home)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Campo de texto:
 
-## Deploy on Vercel
+  * “¿Qué quieres construir hoy?”
+* Botón: “Generar Ruta”
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Generación con IA
+
+* Se envía la idea a un modelo LLM
+* Devuelve un JSON con:
+
+  * nodos
+  * dependencias
+
+---
+
+### 3. Visualización (Core)
+
+* Grafo interactivo con React Flow
+* Nodos conectados por dependencias
+
+---
+
+### 4. Interacción básica
+
+* Click en nodo:
+
+  * descripción
+  * explicación simple
+
+---
+
+## 🔥 Feature diferencial
+
+### “¿Qué hago ahora?”
+
+* Detecta el primer nodo ejecutable
+* Lo resalta visualmente
+* Reduce la confusión del usuario
+
+---
+
+## ⚙️ Arquitectura
+
+### Frontend + Backend
+
+* Next.js (App Router)
+
+### IA
+
+* OpenRouter (LLM)
+
+### Base de datos (opcional)
+
+* Supabase (guardar proyectos)
+
+### Deploy
+
+* CubePath
+
+---
+
+## 🔄 Flujo de la aplicación
+
+```
+Usuario escribe idea
+        ↓
+Next.js (frontend)
+        ↓
+API /generate
+        ↓
+OpenRouter (IA)
+        ↓
+JSON (nodes + edges)
+        ↓
+React Flow renderiza grafo
+```
+
+---
+
+## 🧱 Estructura del proyecto
+
+```
+/app
+  page.tsx
+  /api
+    /generate
+      route.ts
+
+/components
+  GraphView.tsx
+  InputIdea.tsx
+  NodeDetail.tsx
+```
+
+---
+
+## 📦 Estructura de datos
+
+```json
+{
+  "nodes": [
+    {
+      "id": "auth",
+      "title": "Autenticación",
+      "description": "Login de usuarios"
+    }
+  ],
+  "edges": [
+    {
+      "from": "db",
+      "to": "auth"
+    }
+  ]
+}
+```
+
+---
+
+## 🧪 Tecnologías
+
+* Next.js
+* React Flow
+* Tailwind CSS
+* OpenRouter
+* Supabase (opcional)
+
+---
+
+## 🎨 Experiencia de usuario (UX)
+
+* Generación animada del mapa
+* Interfaz minimalista
+* Feedback en tiempo real
+* Interacción simple e intuitiva
+
+---
+
+## 🏆 Objetivo en la hackatón
+
+Destacar en:
+
+1. Experiencia de usuario (UX)
+2. Creatividad
+3. Utilidad real
+
+---
+
+## 🚀 Roadmap rápido
+
+### Fase 1 (Base)
+
+* Input
+* API fake
+* Grafo estático
+
+### Fase 2 (IA)
+
+* Integración con OpenRouter
+* Generación dinámica
+
+### Fase 3 (UX)
+
+* Animaciones
+* “¿Qué hago ahora?”
+* Panel de detalle
+
+### Fase 4 (Deploy)
+
+* Subir a CubePath
+* URL pública
+
+---
+
+## 📌 Notas
+
+* El enfoque está en UX, no en complejidad técnica
+* Se prioriza demo funcional y clara
+* Arquitectura simple para evitar fallos
+
+---
+
+## 🧠 Frase clave del proyecto
+
+> “DevMap elimina la confusión y te dice exactamente qué hacer primero.”
+
+---
